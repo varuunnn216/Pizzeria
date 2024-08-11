@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container-fluid mt-2">
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark rounded">
+        <table class="col-md-5">
+          <tbody>
+            <tr>
+              <td>
+                <p class="text-secondary fs-3">Pizzeria</p>
+              </td>
+              <td>
+                <a routerLink="/home" routerLinkActive="routerLinkActive"
+                  ><img
+                    id="logoImg"
+                    src="/assets/PizzeriaLogo.png"
+                    alt="Pizza Logo"
+                    class="rounded"
+                    height="50"
+                    width="50"
+                /></a>
+              </td>
+              <td class="px-2">
+                <a
+                  class="text-decoration-none text-secondary"
+                  routerLink="/orderPizza"
+                  routerLinkActive="routerLinkActive"
+                  >Order Pizza</a
+                >
+              </td>
+              <td class="px-2">
+                <a
+                  class="text-decoration-none text-secondary"
+                  routerLink="/customizePizza"
+                  routerLinkActive="routerLinkActive"
+                  >Build your Pizza</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-md-6">
+          <button
+            [routerLink]="['/shoppingCart']"
+            routerLinkActive="routerLinkActive"
+            type="button"
+            class="btn btn-warning btn-sm float-end mt-2 text-white"
+          >
+            <img src="/assets/cart1.jpg" alt="cartIcon" width="20" />
+            Shopping Cart
+          </button>
+        </div>
+      </nav>
+    </div>
+    <router-outlet></router-outlet>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark rounded  ">
+          <div class="container-fluid">
+            <a class="navbar-brand" routerLink="/home" routerLinkActive="nav-link active">Pizzeria
+              <img src=".\assets\PizzeriaLogo.png" alt="" width="89" height="69">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/orderPizza">Order Pizza</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/customizePizza">Build Your Pizza</a>
+                </li>
+              </ul>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <button type="button" class="btn btn-warning btn-sm  text-nowrap " routerLink="/shoppingCart">
+                  <i class="fa fa-shopping-cart"></i> Shopping Cart
+                  <!-- <span class="badge rounded-pill bg-light text-dark">{{count}}</span> -->
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+       
+       
+      </div>
+</body>
+</html>

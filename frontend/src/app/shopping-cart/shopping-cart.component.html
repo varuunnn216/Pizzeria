@@ -1,0 +1,293 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container pt-5">
+      <div class="container pt-5">
+        <div class="row">
+          <div class="col-md-8">
+            Your ng-container for pizza cart items
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <div class="card-body">
+                <b class="card-text text-primary">Total amount: {{ cartTotal }}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        
+        <ng-container *ngFor="let item of pizzacartList">
+          <div class="card col-md-10">
+            <table class="table">
+              <tr>
+                <div ng-if="item.name">
+                  <br>
+                  <b>{{ item.name }}</b>
+                </div>
+                <div ng-if="item.tname">
+                  <b>{{ item.tname }}</b>
+                </div>
+                <br />
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    [src]="item.image"
+                    alt="item Image"
+                    width="150"
+                    height="150"
+                  />
+                </td>
+                <td>
+                  <div ng-if="item.topping">
+                    <br /><br />
+                    <b>Toppings : </b> {{ item.topping }} <br /><br />
+                  </div>
+                  <div ng-if="item.ingredients">
+                    <b>Ingredients : </b> {{ item.ingredients }} <br />
+                    <br />
+                  </div>
+                <b>{{ item.price | currency : "INR" }}</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <textarea
+                    class="ms-5"
+                    name="itemQuantity"
+                    id="textarea1"
+                    cols="3"
+                    rows="1"
+                    [(ngModel)]="item.quantity"
+                  ></textarea>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-warning me-2"
+                    type="button"
+                    (click)="decreaseCount(item)"
+                  >
+                    <img
+                      class="rounded rounded-circle"
+                      src="\assets\hyphen.png"
+                      alt="decrementIcon"
+                      width="20"
+                    />
+                  </button>
+                  <textarea
+                    class=""
+                    name="itemQuantity"
+                    id="textarea1"
+                    cols="1"
+                    rows="1"
+                    [(ngModel)]="item.quantity"
+                  ></textarea>
+                  <button
+                    class="btn btn-primary me-2"
+                    type="button"
+                    (click)="increaseCount(item)"
+                  >
+                    <img
+                      class="rounded rounded-circle"
+                      src="\assets\plus.png"
+                      alt="decrementIcon"
+                      width="20"
+                    />
+                  </button>
+                  <button
+                    class="btn btn-danger me-2"
+                    type="button"
+                    (click)="deleteItem(item)"
+                  >
+                    <img
+                      class="rounded rounded-circle"
+                      src="\assets\trash.png"
+                      alt="decrementIcon"
+                      width="20"
+                    />
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </ng-container>
+
+        <ng-container *ngFor="let item of ingredientcartList">
+          <div class="card col-md-8 mb-3">
+            <table class="table">
+              <tr>
+                <div ng-if="item.tname">
+                  <br>
+                  <b>{{ item.tname }}</b>
+                </div>
+                <td>
+                  <img
+                    [src]="item.image"
+                    alt="item Image"
+                    width="150"
+                    height="150"
+                  />
+                </td>
+                <td>&commat; {{ item.price | currency : "INR" }} each</td>
+              </tr>
+            </table>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </body>
+</html> -->
+
+<!-- include below code if you want - + delete buttons -->
+    <!-- <tr>
+          <td>
+              <textarea
+              class="ms-5 "
+              name="itemQuantity"
+              id="textarea1"
+              cols="3"
+              rows="1"
+              [(ngModel)]="item.quantity"></textarea>
+          </td>
+          <td>
+            <button class="btn btn-primary me-2" type="button" (click)="decreaseCount(item)">
+              <img
+                class="rounded rounded-circle"
+                src="\assets\hyphen.png"
+                alt="decrementIcon"
+                width="20"
+              />
+            </button>
+            <button class="btn btn-primary me-2" type="button" (click)="increaseCount(item)">
+              <img
+                class="rounded rounded-circle"
+                src="\assets\plus.png"
+                alt="decrementIcon"
+                width="20"
+              />
+            </button>
+            <button class="btn btn-danger me-2" type="button" (click)="deleteItem(item)">
+              <img
+                class="rounded rounded-circle"
+                src="\assets\trash.png"
+                alt="decrementIcon"
+                width="20"
+              />
+            </button>
+          </td>
+        </tr> -->
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Shopping Cart</title>
+          <style>
+            /* Add your custom CSS styles here */
+            .container {
+              margin-top: 50px;
+            }
+            .card {
+              margin-bottom: 20px;
+            }
+            .item-details {
+              display: flex;
+              align-items: center;
+            }
+            .item-image {
+              width: 150px;
+              height: 150px;
+              object-fit: cover;
+              margin-right: 20px;
+            }
+            .quantity-input {
+              width: 50px;
+              text-align: center;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <!-- <th>Image</th> -->
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of ingredientcartList">
+                        <td>
+                          <div class="item-details">
+                            <img [src]="item.image" alt="item Image" class="item-image" />
+                            <div>
+                              <b>{{ item.tname }}</b>
+                              <p>{{ item.description }}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>{{ item.price | currency : 'INR' }}</td>
+                        <td>
+                          <div class="quantity-controls">
+                            <button class="btn btn-primary btn-sm" (click)="decreaseCount(item)">-</button>
+                            <input type="number" class="quantity-input" [(ngModel)]="item.quantity" />
+                            <button class="btn btn-primary btn-sm" (click)="increaseCount(item)">+</button>
+                          </div>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger btn-sm" (click)="deleteItem(item)"><img class="rounded rounded-circle" src="\assets\trash.png"  alt="decrementIcon"  width="20"/></button>
+                        </td>
+                      </tr>
+                      <tr *ngFor="let item of pizzacartList">
+                        <td>
+                          <div class="item-details">
+                            <img [src]="item.image" alt="item Image" class="item-image" />
+                            <div>
+                              <b>{{ item.name }}</b>
+                              <!-- <p>{{ item.description }}</p> -->
+                            </div>
+                          </div>
+                        </td>
+                        <td>{{ item.price | currency : 'INR' }}</td>
+                        <td>
+                          <div class="quantity-controls">
+                            <button class="btn btn-primary btn-sm" (click)="decreaseCount(item)">-</button>
+                            <input type="number" class="quantity-input" [(ngModel)]="item.quantity" />
+                            <button class="btn btn-primary btn-sm" (click)="increaseCount(item)">+</button>
+                          </div>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger btn-sm" (click)="deleteItem(item)"><img class="rounded rounded-circle" src="\assets\trash.png"  alt="decrementIcon"  width="20"/></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total amount: {{ cartTotal | currency : 'INR' }}</h5>
+                    <!-- <button class="btn btn-primary">Checkout</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </body>
+        </html>
+        

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="container pt-4">
+        <div class="row">
+            <ng-container *ngFor="let pizza of pizzaList">
+                <div class="cart  col-md-6 mb-4">
+                    <table class="table border fixed-box w-100 h-100 border-dark border-1">
+                        <tbody >
+                            <tr>
+                                <td class="border-0">
+                                    <b>{{pizza.name}}</b>
+                                    <br/>
+                                    <div>
+                                        <img src="../../assets/veg.png" alt="veg Pizza" width="30" *ngIf="pizza.type=='veg'">
+                                        <img src="../../assets/non-veg.png" alt="non-veg Pizza" width="30"*ngIf="pizza.type!='veg'">
+                                    </div>
+                                </td>
+                                <td class="border-0">
+                                    <p>{{pizza.description}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5>{{pizza.price|currency:"INR"}}</h5>
+                                </td>
+                                <td>
+                                    <b>Ingredients: </b>
+                                    <p>{{pizza.ingredients}}</p>
+                                    <b>Topping: </b>
+                                    <p>{{pizza.topping}}</p>
+                                </td>
+                                <td>
+                                    <img
+                                      [src]="pizza.image" alt="Pizza image" width="150" height="auto"/>
+                                    <div class="pl-2 pt-2">
+                                        <button type="button" class="btn btn-primary" (click)="addToCart(pizza.id, pizza.price)" >
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                        <!-- <br/> -->
+                    </table>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+   
+ 
+<hr>
+<router-outlet></router-outlet>
+</body>
+</html>

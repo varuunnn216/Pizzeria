@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert/delete Pizza Form</title>
+</head>
+<body>
+  <div>
+      <h2>delete Pizza Form</h2>
+    <form action="http://localhost:3000/deleteitem" method="post">
+        <label for="pizzaid">Pizza ID:</label>
+        <input type="text" id="pizzaid" name="pizzaid" required>
+        <button type="submit">click to delete </button>
+      </form>
+  </div>
+  <div>
+      <h2>inserting Pizza Form</h2>
+    <form action="http://localhost:3000/insertpizza" method="post">
+      <label for="pizzaid">Pizza ID:</label>
+      <input type="text" id="pizzaid" name="pizzaid" required>
+      <button type="submit">click to insert </button>
+  </div>
+  </form>
+</body>
+</html>

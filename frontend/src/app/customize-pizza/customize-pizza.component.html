@@ -1,0 +1,53 @@
+<div class="container pt-5">
+  <div class="row ps-5">
+    <div class="col-md-10 mb-3 ps-5 ms-5">
+      <table class="table table-striped table-bordered border-dark">
+        <tbody>
+          <ng-container *ngFor="let ingredient of ingredientsList">
+            <tr>
+              <td>
+                <img
+                  [src]="ingredient.image"
+                  alt="item Image"
+                  width="90"
+                  height="90"
+                />
+                <b>
+                  {{ ingredient.tname }}</b>
+              </td>
+              <td>
+                <p>{{ ingredient.price | currency : "INR" }}</p>
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  name="add"
+                  [(ngModel)]="ingredient.checked"
+                  id="id1"
+                  (change)="addIngredient(ingredient, $event)"
+                />
+                <label for="add" class="text-danger">Add</label>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <tr>
+        <td>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="addIngredientsToCart()"
+          >
+            Add to Cart
+          </button>
+        </td>
+        <td class="ps-5">
+          <b class="text-secondary">
+            {{ ingredientsTotalCost | currency : "INR" }}
+          </b>
+        </td>
+      </tr>
+    </div>
+  </div>
+</div>
